@@ -1,7 +1,7 @@
 import NoProjectImage from '../../assets/no-projects.png'
 import Button from '../Button/Button';
 
-export default function NoProject(){
+export default function NoProject({onStartAddProject}){
   return (
     <div className="mt-24 text-center w-2/3">
       <img 
@@ -13,7 +13,9 @@ export default function NoProject(){
       </h2>
       <p className="text-stone-400 mb-">Please select a project from the sidebar</p>
       <p className="mt-8">
-        <Button label="Create New Project" />
+        <Button 
+          onClick={onStartAddProject}
+          label="Create New Project" />
       </p>
     </div>
   );
