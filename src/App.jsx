@@ -10,7 +10,7 @@ function App() {
     projects: []
   });
 
-  function handleAddProject(){
+  function handleStartAddProject(){
     console.log("Add project clicked");
     setProjectsState(prevState => { 
       return {
@@ -20,18 +20,33 @@ function App() {
     });
   }
 
+  function handleAddProject(projectData){
+    setProjectsState( prevState => {
+      const newProject = {
+        ...projectData,
+        id: Math.random().toString()
+      };
+      return {
+        ...prevState,
+        projects: [...prevState.projects, newProject],
+      };
+    });
+  }
+
+  console.log(projectsState);
+
   let content;
 
   // null means the user has clicked the "Add Project" button
   if (projectsState.selectedProjectId === null) {
-    content = <NewProject />;
+    content = <NewProject onAddProject={handleAddProject} />;
   } else if (projectsState.selectedProjectId === undefined) {
-    content = <NoProject onStartAddProject={handleAddProject} />
+    content = <NoProject onStartAddProject={handleStartAddProject} />
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <Sidebar onStartAddProject={handleAddProject} />
+      <Sidebar onStartAddProject={handleStartAddProject} />
       { content }
     </main>
   );
