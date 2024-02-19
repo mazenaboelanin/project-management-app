@@ -3,12 +3,22 @@ import { useState } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 import NewProject from './components/NewProject/NewProject';
 import NoProject from './components/NoProject/NoProject';
+import SelectedProject from './components/SelectedProject/SelectedProject';
 
 function App() {
   const [projectsState, setProjectsState ] = useState({
     selectedProjectId: undefined,
     projects: []
   });
+  
+  function handleSelectProject(projectId){
+    setProjectsState(prevState => { 
+      return {
+        ...prevState,
+        selectedProjectId: projectId
+      } 
+    });
+  }
 
   function handleStartAddProject(){
     console.log("Add project clicked");
@@ -44,7 +54,9 @@ function App() {
     });
   }
 
-  let content;
+  const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
+
+  let content = <SelectedProject project={selectedProject} />;
 
   // null means the user has clicked the "Add Project" button
   if (projectsState.selectedProjectId === null) {
@@ -58,6 +70,7 @@ function App() {
       <Sidebar 
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
+        onSelectProject={handleSelectProject}
       />
       { content }
     </main>
