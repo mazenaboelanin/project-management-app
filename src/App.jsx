@@ -20,6 +20,17 @@ function App() {
     });
   }
 
+  function handleDeleteProject(projectId){
+    setProjectsState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(project => project.id !== projectId)
+      }
+    });
+    
+  }
+
   function handleStartAddProject(){
     console.log("Add project clicked");
     setProjectsState(prevState => { 
@@ -56,7 +67,7 @@ function App() {
 
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
 
-  let content = <SelectedProject project={selectedProject} />;
+  let content = <SelectedProject project={selectedProject} onDeleteProject={handleDeleteProject} />;
 
   // null means the user has clicked the "Add Project" button
   if (projectsState.selectedProjectId === null) {
