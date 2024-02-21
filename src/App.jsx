@@ -8,8 +8,26 @@ import SelectedProject from './components/SelectedProject/SelectedProject';
 function App() {
   const [projectsState, setProjectsState ] = useState({
     selectedProjectId: undefined,
-    projects: []
+    projects: [],
+    tasks: []
   });
+
+  function handleAddTask(text){
+    setProjectsState( prevState => {
+      const taskId = Math.random();
+      const newTask = {
+        id: taskId,
+        text: text,
+        selectedProjectId: prevState.selectedProjectId
+      };
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks],
+      };
+    });
+  }
+
+  function handleDeleteTask(){}
   
   function handleSelectProject(projectId){
     setProjectsState(prevState => { 
@@ -67,7 +85,13 @@ function App() {
 
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
 
-  let content = <SelectedProject project={selectedProject} onDeleteProject={handleDeleteProject} />;
+  let content = 
+    <SelectedProject
+      project={selectedProject}
+      onDeleteProject={handleDeleteProject}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+      tasks={projectsState.tasks} />;
 
   // null means the user has clicked the "Add Project" button
   if (projectsState.selectedProjectId === null) {
