@@ -9,8 +9,8 @@ export default function Tasks({tasks, onAddTask, onDeleteTask}){
 
       { 
         tasks.length === 0 && 
-        <p className="text-stone-800 mb-4">
-        This prokect don't have any tasks yet. Click the "Add Task" button to add a new task.
+        <p className="text-stone-800 my-4">
+        This project don't have any tasks yet. Click the "Add Task" button to add a new task.
         </p>
       }
 
