@@ -16,7 +16,7 @@ export default function Sidebar({
         />
       </div>
   
-      <ul>
+      <ul className="mt-2">
         {
           projects.map( project => {
 
