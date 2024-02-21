@@ -1,4 +1,4 @@
-import Tasks from '../Tasks/Tasks';
+import Tasks from '../../tasks/Tasks/Tasks';
 
 export default function SelectedProject({project, onDeleteProject, tasks, onAddTask, onDeleteTask}) {
 

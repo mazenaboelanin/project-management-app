@@ -1,5 +1,5 @@
-import NoProjectImage from '../../assets/no-projects.png'
-import Button from '../Button/Button';
+import NoProjectImage from '../../../assets/no-projects.png'
+import Button from '../../ui/Button/Button';
 
 export default function NoProject({onStartAddProject}){
   return (
